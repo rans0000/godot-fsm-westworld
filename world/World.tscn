@@ -18,7 +18,7 @@ nav_path = NodePath("../Navigation")
 target_path = NodePath("../MinerTarget")
 
 [node name="MinerTarget" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5837, 0, 17.4449 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.584, 0, 17.445 )
 
 [node name="Navigation" type="Navigation" parent="."]
 __meta__ = {
@@ -67,6 +67,11 @@ height = 5.0
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.7644, 2.5, 27.1387 )
 width = 45.0
 height = 5.0
+
+[node name="CSGBox9" type="CSGBox" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3636, 2.5, 17.4001 )
+height = 5.0
+depth = 5.76015
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.733706, -0.356162, 0.57864, 0, 0.851608, 0.524179, -0.679467, -0.384593, 0.62483, 51.0088, 45.0718, 58.9616 )

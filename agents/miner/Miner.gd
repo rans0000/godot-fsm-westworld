@@ -18,7 +18,7 @@ func _ready():
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_to_target()
 	pass
 
@@ -38,5 +38,5 @@ func move_to_target():
 		current_path_index += 1
 	else:
 		var velocity = dir.normalized() * speed
-		move_and_slide(velocity)
+		var _vel = move_and_slide(velocity)
 #	print(dir, " ---- ", dir.length(), " ---- ", current_path_index)
