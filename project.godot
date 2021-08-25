@@ -10,18 +10,24 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "State",
+"class": "MinerAI",
 "language": "GDScript",
-"path": "res://fsm/state.gd"
+"path": "res://ai/miner_ai.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://fsm/state_machine.gd"
+}, {
+"base": "Node",
+"class": "StateMinerTravelToMine",
+"language": "GDScript",
+"path": "res://ai/state_miner_travel_to_mine.gd"
 } ]
 _global_script_class_icons={
-"State": "",
-"StateMachine": ""
+"MinerAI": "",
+"StateMachine": "",
+"StateMinerTravelToMine": ""
 }
 
 [application]

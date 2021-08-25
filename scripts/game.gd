@@ -1,3 +1,5 @@
 extends Node
 
-const DEBUG = true
+const DEBUG = false
+var mines = []
+var restaurants = []

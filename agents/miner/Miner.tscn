@@ -2,8 +2,8 @@
 
 [ext_resource path="res://agents/miner/Miner.gd" type="Script" id=1]
 [ext_resource path="res://fsm/state_machine.gd" type="Script" id=2]
-[ext_resource path="res://ai/state_move_to_and_mine.gd" type="Script" id=3]
-[ext_resource path="res://ai/state_move_to_and_drink.gd" type="Script" id=4]
+[ext_resource path="res://ai/miner_ai.gd" type="Script" id=3]
+[ext_resource path="res://ai/state_miner_travel_to_mine.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -29,11 +29,12 @@ shape = SubResource( 1 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
+[node name="MinerAI" type="Node" parent="."]
+script = ExtResource( 3 )
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="StateMoveToAndMine" type="Node" parent="StateMachine"]
-script = ExtResource( 3 )
-
-[node name="StateMoveToAndDrink" type="Node" parent="StateMachine"]
+[node name="StateMinerTravelToMine" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
+ai_path = NodePath("../../MinerAI")

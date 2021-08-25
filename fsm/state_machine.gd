@@ -7,6 +7,7 @@ var history:Array = []
 
 
 func _ready():
+	yield(get_tree().root, "ready")
 	state = get_child(0)
 	_enter_state()
 	pass
