@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://camera/rts_camera/RtsCamera.gd" type="Script" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 5, 5 )
+
+[node name="RtsCamera" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CameraAxis" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="CameraAxis"]
+transform = Transform( -1, 3.55271e-15, -8.74228e-08, -4.49266e-08, 0.85785, 0.513901, 7.49956e-08, 0.513901, -0.85785, 0, 5, -5.03912 )
+far = 1000.0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 1 )
+material/0 = null
