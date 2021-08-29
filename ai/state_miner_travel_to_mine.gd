@@ -19,7 +19,7 @@ func enter():
 
 
 func physics_process(_delta):
-	ai.move_to_target()
+	ai.move_to_target(_delta)
 	pass
 
 
