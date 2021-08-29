@@ -1,9 +1,27 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://agents/miner/Miner.gd" type="Script" id=1]
 [ext_resource path="res://fsm/state_machine.gd" type="Script" id=2]
 [ext_resource path="res://ai/miner_ai.gd" type="Script" id=3]
 [ext_resource path="res://ai/state_miner_travel_to_mine.gd" type="Script" id=4]
+[ext_resource path="res://agents/miner/ThinDarkWhiteWorker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://animations/thin_dark_worker/anim_drunk_walk-loop.tres" type="Animation" id=6]
+[ext_resource path="res://animations/thin_dark_worker/anim_fight_idle-loop.tres" type="Animation" id=7]
+[ext_resource path="res://animations/thin_dark_worker/anim_fight_kick.tres" type="Animation" id=8]
+[ext_resource path="res://animations/thin_dark_worker/anim_fight_taking_hit.tres" type="Animation" id=9]
+[ext_resource path="res://animations/thin_dark_worker/anim_fight_dodge.tres" type="Animation" id=10]
+[ext_resource path="res://animations/thin_dark_worker/anim_insult.tres" type="Animation" id=11]
+[ext_resource path="res://animations/thin_dark_worker/anim_digging.tres" type="Animation" id=12]
+[ext_resource path="res://animations/thin_dark_worker/anim_drunk_idle-loop.tres" type="Animation" id=13]
+[ext_resource path="res://animations/thin_dark_worker/anim_drink.tres" type="Animation" id=14]
+[ext_resource path="res://animations/thin_dark_worker/anim_turn_left.tres" type="Animation" id=15]
+[ext_resource path="res://animations/thin_dark_worker/anim_serve_food.tres" type="Animation" id=16]
+[ext_resource path="res://animations/thin_dark_worker/anim_stand_straight-loop.tres" type="Animation" id=17]
+[ext_resource path="res://animations/thin_dark_worker/anim_sad_idle-loop.tres" type="Animation" id=18]
+[ext_resource path="res://animations/thin_dark_worker/anim_threten.tres" type="Animation" id=19]
+[ext_resource path="res://animations/thin_dark_worker/anim_victory.tres" type="Animation" id=20]
+[ext_resource path="res://animations/thin_dark_worker/anim_turn_right.tres" type="Animation" id=21]
+[ext_resource path="res://animations/thin_dark_worker/anim_punch.tres" type="Animation" id=22]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -16,6 +34,10 @@ mid_height = 1.2
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.0352941, 0.0627451, 0.643137, 1 )
 
+[sub_resource type="AnimationNodeStateMachine" id=4]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
 [node name="Miner" type="KinematicBody"]
 collision_layer = 2
 collision_mask = 2
@@ -23,6 +45,7 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.1, 0 )
+visible = false
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
@@ -38,3 +61,31 @@ script = ExtResource( 2 )
 [node name="StateMinerTravelToMine" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 ai_path = NodePath("../../MinerAI")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 4 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../ThinDarkWhiteWorker")
+autoplay = "anim_stand_straight-loop"
+anims/anim_digging = ExtResource( 12 )
+anims/anim_drink = ExtResource( 14 )
+anims/anim_drunk_idle-loop = ExtResource( 13 )
+anims/anim_drunk_walk-loop = ExtResource( 6 )
+anims/anim_fight_dodge = ExtResource( 10 )
+anims/anim_fight_idle-loop = ExtResource( 7 )
+anims/anim_fight_kick = ExtResource( 8 )
+anims/anim_fight_taking_hit = ExtResource( 9 )
+anims/anim_insult = ExtResource( 11 )
+anims/anim_punch = ExtResource( 22 )
+anims/anim_sad_idle-loop = ExtResource( 18 )
+anims/anim_serve_food = ExtResource( 16 )
+anims/anim_stand_straight-loop = ExtResource( 17 )
+anims/anim_threten = ExtResource( 19 )
+anims/anim_turn_left = ExtResource( 15 )
+anims/anim_turn_right = ExtResource( 21 )
+anims/anim_victory = ExtResource( 20 )
+
+[node name="ThinDarkWhiteWorker" parent="." instance=ExtResource( 5 )]
