@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://agents/miner/Miner.gd" type="Script" id=1]
 [ext_resource path="res://fsm/state_machine.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://animations/thin_dark_worker/anim_victory.tres" type="Animation" id=20]
 [ext_resource path="res://animations/thin_dark_worker/anim_turn_right.tres" type="Animation" id=21]
 [ext_resource path="res://animations/thin_dark_worker/anim_punch.tres" type="Animation" id=22]
+[ext_resource path="res://animations/thin_dark_worker/anim_walk-loop.tres" type="Animation" id=24]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -34,9 +35,45 @@ mid_height = 1.2
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.0352941, 0.0627451, 0.643137, 1 )
 
-[sub_resource type="AnimationNodeStateMachine" id=4]
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "anim_digging"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "anim_stand_straight-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "anim_walk-loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachine" id=13]
+states/anim_digging/node = SubResource( 4 )
+states/anim_digging/position = Vector2( 488.333, 261.667 )
+states/anim_stand_straight-loop/node = SubResource( 5 )
+states/anim_stand_straight-loop/position = Vector2( 364.333, 148.778 )
+states/anim_walk-loop/node = SubResource( 6 )
+states/anim_walk-loop/position = Vector2( 731, 149.667 )
+transitions = [ "anim_stand_straight-loop", "anim_walk-loop", SubResource( 7 ), "anim_walk-loop", "anim_stand_straight-loop", SubResource( 8 ), "anim_stand_straight-loop", "anim_digging", SubResource( 9 ), "anim_digging", "anim_walk-loop", SubResource( 10 ), "anim_walk-loop", "anim_digging", SubResource( 11 ), "anim_digging", "anim_stand_straight-loop", SubResource( 12 ) ]
+start_node = "anim_stand_straight-loop"
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/StateMachine/node = SubResource( 13 )
+states/StateMachine/position = Vector2( 432.333, 136.333 )
+start_node = "StateMachine"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
 
 [node name="Miner" type="KinematicBody"]
 collision_layer = 2
@@ -55,21 +92,22 @@ material/0 = SubResource( 3 )
 [node name="MinerAI" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="FSM" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="StateMinerTravelToMine" type="Node" parent="StateMachine"]
+[node name="StateMinerTravelToMine" type="Node" parent="FSM"]
 script = ExtResource( 4 )
 ai_path = NodePath("../../MinerAI")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 4 )
+tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 5 )
+active = true
+parameters/playback = SubResource( 15 )
+parameters/StateMachine/playback = SubResource( 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../ThinDarkWhiteWorker")
-autoplay = "anim_stand_straight-loop"
 anims/anim_digging = ExtResource( 12 )
 anims/anim_drink = ExtResource( 14 )
 anims/anim_drunk_idle-loop = ExtResource( 13 )
@@ -87,6 +125,7 @@ anims/anim_threten = ExtResource( 19 )
 anims/anim_turn_left = ExtResource( 15 )
 anims/anim_turn_right = ExtResource( 21 )
 anims/anim_victory = ExtResource( 20 )
+anims/anim_walk-loop = ExtResource( 24 )
 
 [node name="ThinDarkWhiteWorker" parent="." instance=ExtResource( 5 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
