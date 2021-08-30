@@ -1,5 +1,4 @@
 extends Node
-class_name StateMinerTravelToMine
 
 export(NodePath) var ai_path
 
@@ -11,9 +10,9 @@ var target = null
 
 func enter():
 	owner.set_target_reached(false)
-	print("enter: walk to mine")
+	print("enter: walk to home")
 	if not target:
-		target = Game.mines[0]
+		target = owner.home
 		ai.build_path(owner.nav, target)
 		owner.playback.travel("anim_walk-loop")
 	pass
@@ -29,6 +28,6 @@ func physics_process(delta):
 func exit():
 	target = null
 	owner.set_target_reached(true)
-	print("exit-state walk mine")
-	fsm.change_state_to(owner.states.STATE_DIG_AT_MINE)
+	print("exit-state walk-home")
+	fsm.change_state_to(owner.states.STATE_MINER_TRAVEL_TO_MINE)
 	pass

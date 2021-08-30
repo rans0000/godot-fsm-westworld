@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://agents/miner/Miner.gd" type="Script" id=1]
 [ext_resource path="res://fsm/state_machine.gd" type="Script" id=2]
@@ -22,7 +22,9 @@
 [ext_resource path="res://animations/thin_dark_worker/anim_victory.tres" type="Animation" id=20]
 [ext_resource path="res://animations/thin_dark_worker/anim_turn_right.tres" type="Animation" id=21]
 [ext_resource path="res://animations/thin_dark_worker/anim_punch.tres" type="Animation" id=22]
+[ext_resource path="res://agents/miner/ai/state_dig_at_mine.gd" type="Script" id=23]
 [ext_resource path="res://animations/thin_dark_worker/anim_walk-loop.tres" type="Animation" id=24]
+[ext_resource path="res://agents/miner/ai/state_travel_to_home.gd" type="Script" id=25]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -65,6 +67,7 @@ states/anim_walk-loop/node = SubResource( 6 )
 states/anim_walk-loop/position = Vector2( 731, 149.667 )
 transitions = [ "anim_stand_straight-loop", "anim_walk-loop", SubResource( 7 ), "anim_walk-loop", "anim_stand_straight-loop", SubResource( 8 ), "anim_stand_straight-loop", "anim_digging", SubResource( 9 ), "anim_digging", "anim_walk-loop", SubResource( 10 ), "anim_walk-loop", "anim_digging", SubResource( 11 ), "anim_digging", "anim_stand_straight-loop", SubResource( 12 ) ]
 start_node = "anim_stand_straight-loop"
+graph_offset = Vector2( -9, 39 )
 
 [sub_resource type="AnimationNodeStateMachine" id=14]
 states/StateMachine/node = SubResource( 13 )
@@ -97,6 +100,13 @@ script = ExtResource( 2 )
 
 [node name="StateMinerTravelToMine" type="Node" parent="FSM"]
 script = ExtResource( 4 )
+ai_path = NodePath("../../MinerAI")
+
+[node name="StateDigAtMine" type="Node" parent="FSM"]
+script = ExtResource( 23 )
+
+[node name="StateTravelToHome" type="Node" parent="FSM"]
+script = ExtResource( 25 )
 ai_path = NodePath("../../MinerAI")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

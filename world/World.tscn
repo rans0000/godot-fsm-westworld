@@ -16,10 +16,15 @@ __meta__ = {
 }
 
 [node name="Mine" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, 35 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 6 )
 
 [node name="Restaurant" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.1781, -3.8147e-06, -37.2724 )
+
+[node name="MinerHome" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4869, 0, -10.2468 )
+
+[node name="Door" type="Spatial" parent="MinerHome"]
 
 [node name="Navigation" type="Navigation" parent="."]
 __meta__ = {
@@ -72,6 +77,7 @@ height = 5.0
 [node name="Miner" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9284, 0, 29.5676 )
 navigation_node = NodePath("../Navigation")
+home_node = NodePath("../MinerHome")
 mine_node = NodePath("../Mine")
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]

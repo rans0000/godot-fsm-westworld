@@ -40,7 +40,8 @@ func _unhandled_key_input(event):
 
 func change_state_to(new_state):
 	history.append(state.name)
-	state = get_node(new_state)
+#	state = get_node(new_state)
+	state = new_state
 	_enter_state()
 	pass
 

@@ -1,6 +1,7 @@
 extends KinematicBody
 
 export(NodePath) var navigation_node
+export(NodePath) var home_node
 export(NodePath) var mine_node
 
 var velocity = Vector3.ZERO
@@ -8,19 +9,22 @@ var target_reached = false
 
 onready var nav = get_node(navigation_node)
 onready var target = get_node(mine_node)
+onready var home = get_node(home_node)
 onready var anim_tree = $AnimationTree
 onready var playback = $AnimationTree.get("parameters/StateMachine/playback")
 onready var ai = $MinerAI
 onready var fsm = $FSM
 onready var states  = {
-	"STATE_MINER_TRAVEL_TO_MINE": $StateMachine/StateMinerTravelToMine
+	"STATE_MINER_TRAVEL_TO_MINE": $FSM/StateMinerTravelToMine,
+	"STATE_DIG_AT_MINE": $FSM/StateDigAtMine,
+	"STATE_TRAVEL_TO_HOME": $FSM/StateTravelToHome
 }
 
 
 
 func _ready():
 	playback.start("anim_stand_straight-loop")
-	ai.connect("target_reached", self, "on_reach_mine")
+	ai.connect("target_reached", self, "on_reach_target")
 	pass
 
 
@@ -36,6 +40,6 @@ func is_target_reached() -> bool:
 	return target_reached
 
 
-func on_reach_mine(_target, _owner):
-	fsm.state.exit("rrrr")
+func on_reach_target(_target, _owner):
+	fsm.state.exit()
 	pass

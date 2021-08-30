@@ -15,6 +15,7 @@ func build_path(nav, _target, door: String = "Door"):
 	target = _target
 	current_path_index = 1
 	path = nav.get_simple_path(owner.global_transform.origin, posObj.global_transform.origin)
+	print("path: ", owner.global_transform.origin, posObj.global_transform.origin)
 	pass
 
 
