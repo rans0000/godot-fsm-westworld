@@ -24,6 +24,7 @@ func physics_process(delta):
 
 func exit():
 	target = null
+	owner.set_gold(0)
 	owner.set_target_reached(true)
 	print("exit-state walk-home")
 	fsm.change_state_to(owner.states.STATE_GOTO_MINE)

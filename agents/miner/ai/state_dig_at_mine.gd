@@ -10,7 +10,8 @@ func enter():
 
 
 func physics_process(_delta):
-	exit()
+	if owner.has_enough_gold():
+		exit()
 	pass
 
 

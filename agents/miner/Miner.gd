@@ -6,6 +6,7 @@ export(NodePath) var mine_node
 
 var velocity = Vector3.ZERO
 var target_reached = false
+var gold = 0
 
 onready var nav = get_node(navigation_node)
 onready var target = get_node(mine_node)
@@ -43,3 +44,19 @@ func is_target_reached() -> bool:
 func on_reach_target(_target, _owner):
 	fsm.state.exit()
 	pass
+
+
+func add_gold(amount: int):
+	gold += amount
+
+
+func get_gold():
+	return gold
+
+
+func set_gold(amount):
+	gold = amount
+
+
+func has_enough_gold():
+	return gold > 20
