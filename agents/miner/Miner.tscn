@@ -2,8 +2,7 @@
 
 [ext_resource path="res://agents/miner/Miner.gd" type="Script" id=1]
 [ext_resource path="res://fsm/state_machine.gd" type="Script" id=2]
-[ext_resource path="res://ai/miner_ai.gd" type="Script" id=3]
-[ext_resource path="res://ai/state_miner_travel_to_mine.gd" type="Script" id=4]
+[ext_resource path="res://ai/agent_ai.gd" type="Script" id=3]
 [ext_resource path="res://agents/miner/ThinDarkWhiteWorker.tscn" type="PackedScene" id=5]
 [ext_resource path="res://animations/thin_dark_worker/anim_drunk_walk-loop.tres" type="Animation" id=6]
 [ext_resource path="res://animations/thin_dark_worker/anim_fight_idle-loop.tres" type="Animation" id=7]
@@ -24,7 +23,8 @@
 [ext_resource path="res://animations/thin_dark_worker/anim_punch.tres" type="Animation" id=22]
 [ext_resource path="res://agents/miner/ai/state_dig_at_mine.gd" type="Script" id=23]
 [ext_resource path="res://animations/thin_dark_worker/anim_walk-loop.tres" type="Animation" id=24]
-[ext_resource path="res://agents/miner/ai/state_travel_to_home.gd" type="Script" id=25]
+[ext_resource path="res://agents/miner/ai/state_goto_home.gd" type="Script" id=25]
+[ext_resource path="res://agents/miner/ai/state_goto_mine.gd" type="Script" id=26]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -92,22 +92,20 @@ shape = SubResource( 1 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
-[node name="MinerAI" type="Node" parent="."]
+[node name="AI" type="Node" parent="."]
 script = ExtResource( 3 )
 
 [node name="FSM" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="StateMinerTravelToMine" type="Node" parent="FSM"]
-script = ExtResource( 4 )
-ai_path = NodePath("../../MinerAI")
+[node name="StateGotoMine" type="Node" parent="FSM"]
+script = ExtResource( 26 )
 
 [node name="StateDigAtMine" type="Node" parent="FSM"]
 script = ExtResource( 23 )
 
-[node name="StateTravelToHome" type="Node" parent="FSM"]
+[node name="StateGotoHome" type="Node" parent="FSM"]
 script = ExtResource( 25 )
-ai_path = NodePath("../../MinerAI")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )

@@ -14,26 +14,14 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ai/agent_ai.gd"
 }, {
-"base": "AgentAI",
-"class": "MinerAI",
-"language": "GDScript",
-"path": "res://ai/miner_ai.gd"
-}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://fsm/state_machine.gd"
-}, {
-"base": "Node",
-"class": "StateMinerTravelToMine",
-"language": "GDScript",
-"path": "res://ai/state_miner_travel_to_mine.gd"
 } ]
 _global_script_class_icons={
 "AgentAI": "",
-"MinerAI": "",
-"StateMachine": "",
-"StateMinerTravelToMine": ""
+"StateMachine": ""
 }
 
 [application]

@@ -12,12 +12,12 @@ onready var target = get_node(mine_node)
 onready var home = get_node(home_node)
 onready var anim_tree = $AnimationTree
 onready var playback = $AnimationTree.get("parameters/StateMachine/playback")
-onready var ai = $MinerAI
+onready var ai = $AI
 onready var fsm = $FSM
 onready var states  = {
-	"STATE_MINER_TRAVEL_TO_MINE": $FSM/StateMinerTravelToMine,
+	"STATE_GOTO_MINE": $FSM/StateGotoMine,
 	"STATE_DIG_AT_MINE": $FSM/StateDigAtMine,
-	"STATE_TRAVEL_TO_HOME": $FSM/StateTravelToHome
+	"STATE_GOTO_HOME": $FSM/StateGotoHome
 }
 
 

@@ -1,9 +1,5 @@
 extends Node
-class_name StateMinerTravelToMine
 
-export(NodePath) var ai_path
-
-onready var ai = get_node(ai_path)
 var fsm: StateMachine
 var target = null
 
@@ -14,15 +10,15 @@ func enter():
 	print("enter: walk to mine")
 	if not target:
 		target = Game.mines[0]
-		ai.build_path(owner.nav, target)
+		owner.ai.build_path(owner.nav, target)
 		owner.playback.travel("anim_walk-loop")
 	pass
 
 
 func physics_process(delta):
 	if not owner.is_target_reached():
-		var velocity = ai.move_to_target(delta)
-		ai.rotate_to_direction(delta, velocity)
+		var velocity = owner.ai.move_to_target(delta)
+		owner.ai.rotate_to_direction(delta, velocity)
 	pass
 
 

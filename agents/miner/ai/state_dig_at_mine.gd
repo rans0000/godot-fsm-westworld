@@ -1,7 +1,6 @@
 extends Node
 
 var fsm: StateMachine
-var checking = false
 
 
 func enter():
@@ -17,5 +16,5 @@ func physics_process(_delta):
 
 func exit():
 	print("exit-state: dig")
-	fsm.change_state_to(owner.states.STATE_TRAVEL_TO_HOME)
+	fsm.change_state_to(owner.states.STATE_GOTO_HOME)
 	pass
