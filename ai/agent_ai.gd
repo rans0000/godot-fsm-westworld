@@ -10,12 +10,11 @@ var current_path_index: int = 0
 var path: Array = []
 var target
 
-func build_path(nav, _target, door: String = "Door"):
-	var posObj = _target.get_node(door)
+func build_path(nav, _target, _interaction_point: String = ""):
 	target = _target
+	var target_pos = _target.get_interact_position(_interaction_point) if _target.has_method("get_interact_position") else _target.global_transform.origin
 	current_path_index = 1
-	path = nav.get_simple_path(owner.global_transform.origin, posObj.global_transform.origin)
-	print("path: ", owner.global_transform.origin, posObj.global_transform.origin)
+	path = nav.get_simple_path(owner.global_transform.origin, target_pos)
 	pass
 
 
