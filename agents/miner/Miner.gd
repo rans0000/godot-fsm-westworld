@@ -2,14 +2,12 @@ extends KinematicBody
 
 export(NodePath) var navigation_node
 export(NodePath) var home_node
-export(NodePath) var mine_node
 
 var velocity = Vector3.ZERO
 var target_reached = false
 var gold = 0
 
 onready var nav = get_node(navigation_node)
-onready var target = get_node(mine_node)
 onready var home = get_node(home_node)
 onready var anim_tree = $AnimationTree
 onready var playback = $AnimationTree.get("parameters/StateMachine/playback")
@@ -54,4 +52,4 @@ func set_gold(amount):
 
 
 func has_enough_gold():
-	return gold > 20
+	return gold >= 20

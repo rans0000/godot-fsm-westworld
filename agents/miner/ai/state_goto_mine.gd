@@ -9,10 +9,9 @@ var target = null
 func enter():
 	owner.set_target_reached(false)
 	if DEBUG: print("enter: walk to mine")
-	if not target:
-		target = Game.mines[0]
-		owner.ai.build_path(owner.nav, target)
-		owner.playback.travel("anim_walk-loop")
+	target = Game.mines[0]
+	owner.ai.build_path(owner.nav, target)
+	owner.playback.travel("anim_walk-loop")
 	pass
 
 
