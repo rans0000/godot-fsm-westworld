@@ -7,6 +7,6 @@ func _ready():
 	pass
 
 
-func get_interact_position(interaction_point):
+func get_interact_position(_interaction_point):
 	var pos =  global_transform.origin
 	return pos

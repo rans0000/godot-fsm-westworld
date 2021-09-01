@@ -25,7 +25,7 @@ onready var states  = {
 
 func _ready():
 	playback.start("anim_stand_straight-loop")
-	ai.connect("target_reached", self, "on_reach_target")
+	ai.connect("target_reached", fsm, "handle_messages")
 	pass
 
 
@@ -39,11 +39,6 @@ func set_target_reached(status: bool):
 
 func is_target_reached() -> bool:
 	return target_reached
-
-
-func on_reach_target(_target, _owner):
-	fsm.state.exit()
-	pass
 
 
 func add_gold(amount: int):

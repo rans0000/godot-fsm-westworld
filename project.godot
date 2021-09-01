@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://ai/agent_ai.gd"
 }, {
 "base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://fsm/state.gd"
+}, {
+"base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://fsm/state_machine.gd"
 } ]
 _global_script_class_icons={
 "AgentAI": "",
+"State": "",
 "StateMachine": ""
 }
 
@@ -33,7 +39,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Game="*res://scripts/game.gd"
-StateConstants="*res://fsm/state_constants.gd"
 
 [layer_names]
 
