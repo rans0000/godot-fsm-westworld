@@ -6,6 +6,7 @@ export(NodePath) var home_node
 var velocity = Vector3.ZERO
 var target_reached = false
 var gold = 0
+var thirst = 0
 
 onready var nav = get_node(navigation_node)
 onready var home = get_node(home_node)
@@ -39,8 +40,9 @@ func is_target_reached() -> bool:
 	return target_reached
 
 
-func add_gold(amount: int):
-	gold += amount
+func dig_gold(_gold: int, _thirst: int):
+	gold += _gold
+	thirst += _thirst
 
 
 func get_gold():

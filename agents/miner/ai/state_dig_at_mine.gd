@@ -11,6 +11,9 @@ func enter():
 
 
 func physics_process(_delta):
+	if owner.thirst > 50 :
+		print("thirsty")
+		owner.thirst = 0
 	if owner.has_enough_gold():
 		fsm.change_state_to(owner.states.STATE_GOTO_HOME)
 	pass

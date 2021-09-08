@@ -697,10 +697,10 @@ tracks/98/loop_wrap = true
 tracks/98/imported = false
 tracks/98/enabled = true
 tracks/98/keys = {
-"times": PoolRealArray( 4.9 ),
+"times": PoolRealArray( 4.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ 10 ],
-"method": "add_gold"
+"args": [ 10, 10 ],
+"method": "dig_gold"
 } ]
 }
