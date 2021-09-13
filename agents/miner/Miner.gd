@@ -24,7 +24,7 @@ onready var states  = {
 
 func _ready():
 	playback.start("anim_stand_straight-loop")
-	ai.connect("target_reached", fsm, "handle_messages")
+	Game.connect("target_reached", fsm, "handle_messages")
 	pass
 
 

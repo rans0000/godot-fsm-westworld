@@ -1,14 +1,14 @@
 extends Node
 class_name AgentAI
 
-signal target_reached
-
 export(int) var speed = 8
 
 var rotate_speed = 5
 var current_path_index: int = 0
 var path: Array = []
 var target
+
+
 
 func build_path(nav, _target, _interaction_point: String = ""):
 	target = _target
@@ -18,11 +18,11 @@ func build_path(nav, _target, _interaction_point: String = ""):
 	pass
 
 
-func move_to_target(_delta, target_threshold: float = 0.5):
+func move_to_target(_delta, event_name: String, target_threshold: float = 0.5):
 	if current_path_index >= path.size():
 		owner.velocity = Vector3.ZERO
 		owner.playback.travel("anim_digging")
-		emit_signal("target_reached", {"name": "target_reached", "target": target, "sender": owner})
+		Game.emit_signal("target_reached", {"name": event_name, "target": target, "sender": owner})
 		return owner.velocity
 	var dir:Vector3 = path[current_path_index] - owner.global_transform.origin
 	if is_within_target_threshold(path[current_path_index], owner.global_transform.origin, target_threshold):

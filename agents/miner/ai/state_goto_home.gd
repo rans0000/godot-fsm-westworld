@@ -17,7 +17,7 @@ func enter():
 
 func physics_process(delta):
 	if not owner.is_target_reached():
-		var velocity = owner.ai.move_to_target(delta)
+		var velocity = owner.ai.move_to_target(delta, "miner_reached_home")
 		owner.ai.rotate_to_direction(delta, velocity)
 	pass
 
@@ -32,6 +32,6 @@ func exit():
 
 func on_message(_message_data):
 	match _message_data.name:
-		"target_reached":
+		"miner_reached_home":
 			fsm.change_state_to(owner.states.STATE_GOTO_MINE)
 	pass
