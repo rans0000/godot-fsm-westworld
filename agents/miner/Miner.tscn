@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://agents/miner/Miner.gd" type="Script" id=1]
 [ext_resource path="res://fsm/state_machine.gd" type="Script" id=2]
@@ -21,10 +21,9 @@
 [ext_resource path="res://animations/thin_dark_worker/anim_victory.tres" type="Animation" id=20]
 [ext_resource path="res://animations/thin_dark_worker/anim_turn_right.tres" type="Animation" id=21]
 [ext_resource path="res://animations/thin_dark_worker/anim_punch.tres" type="Animation" id=22]
-[ext_resource path="res://agents/miner/ai/state_dig_at_mine.gd" type="Script" id=23]
 [ext_resource path="res://animations/thin_dark_worker/anim_walk-loop.tres" type="Animation" id=24]
 [ext_resource path="res://agents/miner/ai/state_goto_home.gd" type="Script" id=25]
-[ext_resource path="res://agents/miner/ai/state_goto_mine.gd" type="Script" id=26]
+[ext_resource path="res://agents/miner/ai/state_goto_mine_and_dig.gd" type="Script" id=26]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -104,11 +103,8 @@ script = ExtResource( 3 )
 [node name="FSM" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="StateGotoMine" type="Node" parent="FSM"]
+[node name="StateGotoMineAndDig" type="Node" parent="FSM"]
 script = ExtResource( 26 )
-
-[node name="StateDigAtMine" type="Node" parent="FSM"]
-script = ExtResource( 23 )
 
 [node name="StateGotoHome" type="Node" parent="FSM"]
 script = ExtResource( 25 )

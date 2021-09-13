@@ -33,5 +33,5 @@ func exit():
 func on_message(_message_data):
 	match _message_data.name:
 		"miner_reached_home":
-			fsm.change_state_to(owner.states.STATE_GOTO_MINE)
+			fsm.change_state_to(owner.states.STATE_GOTO_MINE_AND_DIG)
 	pass

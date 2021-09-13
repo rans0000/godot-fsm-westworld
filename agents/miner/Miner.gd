@@ -15,8 +15,7 @@ onready var playback = $AnimationTree.get("parameters/StateMachine/playback")
 onready var ai = $AI
 onready var fsm = $FSM
 onready var states  = {
-	"STATE_GOTO_MINE": $FSM/StateGotoMine,
-	"STATE_DIG_AT_MINE": $FSM/StateDigAtMine,
+	"STATE_GOTO_MINE_AND_DIG": $FSM/StateGotoMineAndDig,
 	"STATE_GOTO_HOME": $FSM/StateGotoHome
 }
 
