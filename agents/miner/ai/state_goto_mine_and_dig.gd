@@ -9,18 +9,17 @@ var is_digging_mine = false
 
 
 func enter():
-	owner.set_target_reached(false)
+	is_reached_mine = false
+	is_digging_mine = false
 	if DEBUG: print("enter: walk to mine")
 	target = Game.mines[0]
 	owner.ai.build_path(owner.nav, target)
 	owner.playback.travel("anim_walk-loop")
-	is_reached_mine = false
-	is_digging_mine = false
 	pass
 
 
 func physics_process(delta):
-	if not is_reached_mine and not owner.is_target_reached():
+	if not is_reached_mine:
 		var velocity = owner.ai.move_to_target(delta, "miner_reached_mine")
 		owner.ai.rotate_to_direction(delta, velocity)
 	elif is_reached_mine and not is_digging_mine:
@@ -39,7 +38,6 @@ func exit():
 	target = null
 	is_reached_mine = false
 	is_digging_mine = false
-	owner.set_target_reached(true)
 	if DEBUG: print("exit-state walk mine")
 	pass
 

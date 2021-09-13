@@ -4,7 +4,6 @@ export(NodePath) var navigation_node
 export(NodePath) var home_node
 
 var velocity = Vector3.ZERO
-var target_reached = false
 var gold = 0
 var thirst = 0
 
@@ -29,14 +28,6 @@ func _ready():
 
 func _physics_process(_delta):
 	pass
-
-
-func set_target_reached(status: bool):
-	target_reached = status
-
-
-func is_target_reached() -> bool:
-	return target_reached
 
 
 func dig_gold(_gold: int, _thirst: int):
